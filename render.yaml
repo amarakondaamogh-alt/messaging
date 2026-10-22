@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: lan-chat
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python Messagingwebsite.py
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        sync: false   # Render asks you to paste your Neon connection string
