@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5b5bf0">
+<title>LAN Chat</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div id="auth" class="auth hidden">
+  <form class="auth-card" id="auth-form" autocomplete="on">
+    <div class="brand">
+      <div class="brand-logo">💬</div>
+      <h1>LAN Chat</h1>
+      <p>Free messaging with your friends</p>
+    </div>
+    <div class="seg" id="auth-tabs">
+      <button type="button" data-tab="login" class="active">Sign in</button>
+      <button type="button" data-tab="register">Create account</button>
+    </div>
+    <label class="field reg-only"><span>Display name</span>
+      <input name="display_name" maxlength="40" placeholder="e.g. Alex Kim" autocomplete="name"></label>
+    <label class="field"><span>Username</span>
+      <input name="username" required maxlength="24" placeholder="alex" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
+    <label class="field"><span>Password</span>
+      <input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+    <div class="auth-error" id="auth-error"></div>
+    <button class="btn primary block" type="submit" id="auth-submit">Sign in</button>
+  </form>
+</div>
+
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <header class="side-head">
+      <button class="me" id="me-btn" title="Profile & settings"></button>
+      <div class="side-head-actions">
+        <button class="icon-btn" id="theme-btn" title="Toggle dark mode"></button>
+        <button class="icon-btn" id="new-btn" title="New group or channel"></button>
+      </div>
+    </header>
+    <div class="side-search">
+      <span class="side-search-icon" id="side-search-icon"></span>
+      <input id="side-search" placeholder="Search people, chats, messages" autocomplete="off">
+    </div>
+    <nav class="side-list" id="side-list"></nav>
+    <div class="conn hidden" id="conn">Reconnecting…</div>
+  </aside>
+
+  <main class="chat">
+    <div class="empty-state" id="empty-state"></div>
+    <section class="chat-view hidden" id="chat-view">
+      <header class="chat-head">
+        <button class="icon-btn back" id="back-btn" title="Back"></button>
+        <button class="chat-title" id="chat-title" title="Conversation info"></button>
+        <div class="chat-actions">
+          <button class="icon-btn" data-panel="search" title="Search this chat"></button>
+          <button class="icon-btn" data-panel="pins" title="Pinned messages"></button>
+          <button class="icon-btn" data-panel="info" title="Conversation info"></button>
+        </div>
+      </header>
+      <div class="messages-wrap">
+        <div class="messages" id="messages"></div>
+        <button class="jump-bottom hidden" id="jump-bottom" title="Jump to latest"></button>
+      </div>
+      <div class="typing" id="typing"></div>
+      <div class="composer-wrap">
+        <div class="compose-bar hidden" id="compose-bar"></div>
+        <div class="mention-pop hidden" id="mention-pop"></div>
+        <div class="composer">
+          <button class="icon-btn" id="attach-btn" title="Attach files"></button>
+          <input type="file" id="file-input" multiple hidden>
+          <textarea id="input" rows="1" placeholder="Message…" enterkeyhint="send"></textarea>
+          <button class="icon-btn" id="emoji-btn" title="Emoji"></button>
+          <button class="icon-btn hidden" id="mic-btn" title="Record voice message"></button>
+          <button class="send-btn" id="send-btn" title="Send (Enter)"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="panel hidden" id="panel">
+    <header class="panel-head">
+      <h3 id="panel-title"></h3>
+      <button class="icon-btn" id="panel-close" title="Close"></button>
+    </header>
+    <div class="panel-body" id="panel-body"></div>
+  </aside>
+</div>
+
+<div class="modal-backdrop hidden" id="modal"><div class="modal" id="modal-box" role="dialog" aria-modal="true"></div></div>
+<div class="emoji-pop hidden" id="emoji-pop"></div>
+<div class="lightbox hidden" id="lightbox"><img id="lightbox-img" alt=""></div>
+<div class="drop-overlay hidden" id="drop-overlay"><div>Drop files to send</div></div>
+<div class="toasts" id="toasts"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
